@@ -1,6 +1,6 @@
 # Set Membership Global Optimization (SMGO)
 
-Example MATLAB code, and testbed for a comparison test with other optimization algorithms.
+Example MATLAB code, and testbed for a comparison test with other optimization algorithms. Detailed algorithm description and theoretical properties are discussed in https://arxiv.org/abs/2011.03837
 
 ## Requirements
 * MATLAB
