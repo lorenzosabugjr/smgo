@@ -1,2 +1,10 @@
-# smgo
-Set Membership Global Optimization (SMGO)
+# Set Membership Global Optimization (SMGO)
+
+Example MATLAB code, and testbed for a comparison test with other optimization algorithms.
+
+## Requirements
+* MATLAB
+* MATLAB Communications Toolbox
+
+## To run
+Simply copy to your MATLAB path, and run `opt_test.m`. The SMGO code is at `opt_algo/opt_smgo.m`.
