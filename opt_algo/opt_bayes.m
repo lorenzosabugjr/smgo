@@ -1,4 +1,4 @@
-function [ opt_val, opt_pt, opt_hist, x_hist ] = opt_bayes( test_fn, x0, bounds, max_iter )
+function [ opt_val, opt_pt, opt_hist, x_hist, calc_time_hist ] = opt_bayes( test_fn, x0, bounds, max_iter )
     if length( x0 ) == 5
         x1 = optimizableVariable('x1',bounds(1,:));
         x2 = optimizableVariable('x2',bounds(2,:));
@@ -27,4 +27,5 @@ function [ opt_val, opt_pt, opt_hist, x_hist ] = opt_bayes( test_fn, x0, bounds,
     opt_pt = table2array(res.XAtMinObjective);
     opt_hist = res.ObjectiveMinimumTrace';
     x_hist = table2array(res.XTrace)';
+    calc_time_hist = res.IterationTimeTrace';
     
