@@ -45,13 +45,15 @@ for test_fn = [ FN_ROSEN FN_STYB_5D FN_STYB_10D FN_DEB1_10D FN_DEB2_10D FN_SCHWE
                     calc_time_hist = [];
                 end
                 
-                if ~( opt_tech == OPT_DIRECT ) && ~( opt_tech == OPT_BAYES )
+                if ~( opt_tech == OPT_DIRECT )
                     x_hist_stack            = [ x_hist_stack; x_hist ];
-                    val_hist_stack          = [ val_hist_stack; val_hist ];
+                    if ~( opt_tech == OPT_BAYES )
+                        val_hist_stack          = [ val_hist_stack; val_hist ];
+                    end
                     opt_val_hist_stack      = [ opt_val_hist_stack; opt_val_hist ];
                     calc_time_hist_stack    = [ calc_time_hist_stack; calc_time_hist ];
                 end
-                    fprintf("Trial %4d: %f\n", trial, opt_val);
+                fprintf("Trial %4d: %f\n", trial, opt_val);
             end
 
             if ~( opt_tech == OPT_DIRECT )
