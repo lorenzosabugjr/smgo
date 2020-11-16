@@ -41,8 +41,7 @@ for test_fn = [ FN_ROSEN FN_STYB_5D FN_STYB_10D FN_DEB1_10D FN_DEB2_10D FN_SCHWE
                 elseif opt_tech == OPT_DIRECT
                     [ opt_val, opt_pt, opt_val_hist ] = opt_direct( fn_in, bounds, max_iter );
                 elseif opt_tech == OPT_BAYES
-                    [ opt_val, opt_pt, opt_val_hist, x_hist ] = opt_bayes( fn_in, x0, bounds, max_iter );
-                    calc_time_hist = [];
+                    [ opt_val, opt_pt, opt_val_hist, x_hist, calc_time_hist ] = opt_bayes( fn_in, x0, bounds, max_iter );
                 end
                 
                 if ~( opt_tech == OPT_DIRECT )
