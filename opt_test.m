@@ -1,6 +1,6 @@
 clear all; close all;
 addpath('test_fns', 'opt_algo', 'util');
-if ~exist('out_dat', 'dir')
+if ~isfolder('out_dat')
     mkdir('out_dat');
 end
 addpath('out_dat');
