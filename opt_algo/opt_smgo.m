@@ -54,12 +54,6 @@ PSI_ROW_LBND_HGT = D + 4;
 PSI_ROW_LAMBDA   = D + 5;
 mode_db_psi = [];
 
-for i = 1:( 2^D - 1 ) % now populating mode_db_psi
-    mode_db_psi = [ mode_db_psi ...
-                    [ ( vtx_hprbx( :, i )*ones( 1, 2^D - i ) + vtx_hprbx( :, ( i + 1 ):2^D ) ) / 2; 
-                      zeros( 5, 2^D - i ) ] ];
-end
-
 %% loop to max iterations
 for iter = 1:max_iter    
     if iter == 1
@@ -151,17 +145,11 @@ for iter = 1:max_iter
     % - if the new incoming upper (lower) bound is tighter than existing
     %   - replace the vertex value
     %   - replace the triangle value
-    mode_db_psi( [PSI_ROW_UBND_HGT PSI_ROW_LBND_HGT], : ) = ...
-        ( gamma / gamma_prev ) .* mode_db_psi( [PSI_ROW_UBND_HGT PSI_ROW_LBND_HGT], : );
-    [ ~ , mdpts ] = size( mode_db_psi );
-    if iter == 1
-        % setting upper and lower bounds (both the vertex values and height
-        % values for each)
-        mode_db_psi( PSI_ROW_UBND_VTX, : ) = z;
-        mode_db_psi( PSI_ROW_UBND_HGT, : ) = gamma * sqrt( sum( ( mode_db_psi( 1:D, : ) - x * ones( 1, mdpts ) ) .^ 2 ) );
-        mode_db_psi( PSI_ROW_LBND_VTX, : ) = z;
-        mode_db_psi( PSI_ROW_LBND_HGT, : ) = gamma * sqrt( sum( ( mode_db_psi( 1:D, : ) - x * ones( 1, mdpts ) ) .^ 2 ) );
-    else
+    if iter ~= 1
+        mode_db_psi( [PSI_ROW_UBND_HGT PSI_ROW_LBND_HGT], : ) = ...
+            ( gamma / gamma_prev ) .* mode_db_psi( [PSI_ROW_UBND_HGT PSI_ROW_LBND_HGT], : );
+        [ ~ , mdpts ] = size( mode_db_psi );
+        
         % calculating if i should update the upper (lower) bounds
         new_cone_height  = gamma * sqrt( sum( ( mode_db_psi( 1:D, : ) - x * ones( 1, mdpts ) ) .^ 2 ) );
         new_upper_bnd    = z + new_cone_height; 
