@@ -75,8 +75,8 @@ for iter = 1:max_iter
     calc_time = tic;
     if iter > 1        
         % calculating Lipschitz constant
-        gamma = max( gamma_prev, mu * max( abs( opt_samp( end, (2^D + 1):end-1 ) - z ) ...
-                  ./ sqrt( sum( ( opt_samp( 1:end-1, (2^D + 1):end-1 )' - ones( iter-1, 1 ) * x' )' .^ 2 ) ) ) );
+        gamma = max( gamma_prev, mu * max( abs( opt_samp( end, 1:end-1 ) - z ) ...
+                  ./ sqrt( sum( ( opt_samp( 1:end-1, 1:end-1 )' - ones( 2^D+iter-1, 1 ) * x' )' .^ 2 ) ) ) );
     end
     
     %% updating the current best point
