@@ -22,7 +22,10 @@ opt_z_hist     = NaN * ones( 1, max_iter );
 calc_time_hist = NaN * ones( 1, max_iter );
 
 % generate all corners of the hypercube (2^N)
-vtx_hprbx       = de2bi(0:2^D-1)'; % requires Communication Toolbox
+vtx_hprbx = [];
+for i = 0:2^D-1
+    vtx_hprbx = [ vtx_hprbx dec2bin(i, D)'-'0' ];
+end
 vtx_corner_dist = D*ones( 1, 2^D );
 
 %% Construct the database of segments and candidate points
