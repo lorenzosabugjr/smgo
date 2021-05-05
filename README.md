@@ -4,7 +4,6 @@ Example MATLAB code, and testbed for a comparison test with other optimization a
 
 ## Requirements
 * MATLAB
-* MATLAB Communications Toolbox
 
 ## To run
 Simply copy to your MATLAB path, and run `opt_test.m`. The SMGO code is at `opt_algo/opt_smgo.m`.
